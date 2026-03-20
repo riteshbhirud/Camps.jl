@@ -375,18 +375,11 @@ When $g \ge N$: $\nu/t = 1 - \mathrm{rank}(z)/(rg) \ge 1 - N/(rg) \ge 1 - 1/r$.
 While the bound follows from the elementary fact that an $N$-column binary matrix has rank at most $N$, its implications are significant: any circuit with $rg > N$ has OFD-hostile non-Clifford gates \emph{regardless of the specific circuit structure}.
 For VQE with $g \approx 2N$ non-Clifford gates per layer and $r = 10$ layers, the nullity ratio satisfies $\nu/t \ge 1 - N/(20N) = 0.95$, explaining VQE's Class~II membership.
 
-The bound can be understood more deeply through the block structure.
+The bound can be understood more concretely through the block structure.
 The GF(2) matrix decomposes as $z = (z^{(1)\top}, z^{(2)\top}, \ldots, z^{(r)\top})^\top$ where $z^{(k)} \in \mathbb{F}_2^{g \times N}$ collects the rows from block $k$.
-By the linearity of the symplectic representation~\cite{Dehaene2003}, the row space of $z^{(k)}$ is the image of the row space of $z^{(1)}$ under the cumulative inter-block Clifford transformation.
-Specifically, let $D_k$ denote the combined Clifford between blocks 1 and $k$, with symplectic matrix $S_{D_k}$.
-Then $\mathrm{rowspace}(z^{(k)}) = L_k(\mathrm{rowspace}(z^{(1)}))$ where $L_k$ is the invertible $\mathbb{F}_2$-linear map on $\mathbb{F}_2^N$ determined by the $G$-block of $S_{D_k}$.
-The total rank is
-\begin{equation}
-\mathrm{rank}(z) = \dim\bigl(\textstyle\sum_{k=1}^r L_k(V_1)\bigr),
-\end{equation}
-where $V_1 = \mathrm{rowspace}(z^{(1)}) \subseteq \mathbb{F}_2^N$ has $\dim(V_1) = \mathrm{rank}(z^{(1)}) \le \min(g,N)$.
-Each subspace $L_k(V_1)$ has the same dimension as $V_1$ (since $L_k$ is invertible), but the sum has dimension at most $N$.
-When $g \ge N$, we typically have $\mathrm{rank}(z^{(1)}) = N$, so that $V_1 = \mathbb{F}_2^N$ and consequently $\mathrm{rank}(z) = N$ \emph{independently of $r$}; in this regime, every non-Clifford gate beyond the first $N$ contributes only to nullity.
+Since all rows lie in $\mathbb{F}_2^N$, the combined row space $\mathrm{rowspace}(z) = \sum_{k=1}^r \mathrm{rowspace}(z^{(k)})$ has dimension at most $N$.
+When $g \ge N$, the first block's $g$ non-Clifford gates typically produce GF(2) rows spanning all of $\mathbb{F}_2^N$ (i.e., $\mathrm{rank}(z^{(1)}) = N$), in which case $\mathrm{rank}(z) = N$ \emph{independently of $r$}: every non-Clifford gate beyond the first $N$ contributes only to nullity.
+Note that the full symplectic representation of each twisted Pauli (both $x$-bits and $z$-bits) transforms linearly under the inter-block Clifford~\cite{Dehaene2003}, but the GF(2) matrix records only the $x$-bit projection, which does not in general transform as a linear image of the previous block's $x$-bits, since symplectic composition mixes $x$-bits and $z$-bits across blocks.
 
 \begin{figure}[t]
     \centering
@@ -700,7 +693,7 @@ We validate the GF(2) predictions against full CAMPS simulations on 936 circuits
 \subsection{Implementation}
 
 We implement CAMPS in Julia using QuantumClifford.jl~\cite{Krastanov2022} for stabilizer tableau operations and ITensorMPS.jl~\cite{Fishman2022} for MPS operations.
-We employ a hybrid disentangling strategy: for each non-Clifford gate, OFD is attempted first following Liu and Clark's criterion~\cite{Liu2024}; on failure, we fall back to OBD following Qian \emph{et al.}~\cite{Qian2024}, searching over all 720 equivalence classes of two-qubit Clifford gates (up to phases) to minimize the second R\'enyi entropy, using their efficient $O(\chi^3 + |\mathrm{Cl}_2|)$ evaluation method.
+We employ a hybrid disentangling strategy: for each non-Clifford gate, OFD is attempted first following Liu and Clark's criterion~\cite{Liu2024}; on failure, we fall back to OBD following Qian \emph{et al.}~\cite{Qian2024}, searching over the $|\mathrm{Cl}_2| = 11{,}520$ two-qubit Clifford operators to minimize the second R\'enyi entropy, using their efficient $O(\chi^3 + |\mathrm{Cl}_2|)$ evaluation method.
 This hybrid OFD$\to$OBD pipeline is our implementation choice; Liu and Clark's original algorithm applies the gate directly to the MPS when OFD fails, accepting the bond dimension increase.
 The implementation spans approximately 9{,}000 lines of Julia code.
 
@@ -803,7 +796,7 @@ Table~\ref{tab:ofd_rates} reveals a counterintuitive pattern: random circuits wi
 This apparent paradox resolves as follows.
 
 The bound $\chi \le 2^\nu$ (Theorem~\ref{thm:bond_dim}) applies to pure OFD processing, where each failed disentangling doubles the bond dimension.
-Our simulations employ OBD fallback (Section~\ref{sec:validation}), which successfully controls bond dimension for structured circuits at $N \le 16$: OBD searches over 720 two-qubit Clifford gate classes to minimize the second R\'enyi entropy at each bond, actively reducing entanglement at every step.
+Our simulations employ OBD fallback (Section~\ref{sec:validation}), which successfully controls bond dimension for structured circuits at $N \le 16$: OBD searches over two-qubit Clifford operators to minimize the second R\'enyi entropy at each bond, actively reducing entanglement at every step.
 For structured algorithms with regular entanglement patterns, OBD's optimization is highly effective, yielding near-optimal disentanglers that keep $\chi$ far below the $2^\nu$ ceiling.
 Whether OBD maintains this effectiveness at larger $N$ remains an open question; the GF(2) nullity provides a worst-case bound independent of OBD performance.
 
