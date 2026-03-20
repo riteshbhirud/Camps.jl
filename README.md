@@ -63,14 +63,9 @@ Clifford (update tableau only):
 - `XGate(q)`, `YGate(q)`, `ZGate(q)`
 - `CNOTGate(c, t)`, `CZGate(q1, q2)`, `SWAPGate(q1, q2)`
 
-## Running tests
 
-```julia
-using Pkg
-Pkg.test("CAMPS")
-```
 ## LLM USAGE
-LLM was used for the docustrings in this repo
+LLM was used for the docustrings in this repo and organizing code to look nice
 ## References
 
 - Liu & Clark, "Classical simulability of Clifford+T circuits with Clifford-augmented matrix product states" [arXiv:2412.17209](https://arxiv.org/abs/2412.17209)
