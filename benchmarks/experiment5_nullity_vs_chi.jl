@@ -1,3 +1,4 @@
+"""
 Experiment 5: Nullity vs Bond Dimension Validation
 ===================================================
 
@@ -32,7 +33,7 @@ Modes:
 
 Output:
     results/experiment5_nullity_vs_chi.csv
-=
+"""
 
 camps_dir = dirname(dirname(@__FILE__))
 println("Activating CAMPS.jl environment: $camps_dir")

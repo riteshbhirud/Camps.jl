@@ -1,3 +1,4 @@
+"""
 Experiment: Large-N QFT Rank Scaling with Online RREF
 =====================================================
 
@@ -26,7 +27,7 @@ Modes:
     "verify"  - Only run verification against existing data
     "medium"  - Verify + run N=128, 256
     "full"    - Verify + run N=128, 256, 512
-=
+"""
 
 camps_dir = dirname(dirname(@__FILE__))
 println("Activating CAMPS.jl environment: $camps_dir")

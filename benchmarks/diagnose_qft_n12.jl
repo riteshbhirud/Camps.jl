@@ -1,7 +1,8 @@
+"""
 Diagnose QFT N=12 bond dimension spike.
 Tracks χ after every non-Clifford gate to find where OBD fails.
 Also runs N=10, 14, 16 for comparison.
-=
+"""
 
 camps_dir = dirname(dirname(@__FILE__))
 using Pkg

@@ -252,8 +252,8 @@ export compute_gf2_for_mixed_circuit
 
 export generate_single_qubit_clifford, resolve_single_qubit_clifford
 export get_all_two_qubit_cliffords, sample_two_qubit_cliffords
-export clifford_to_matrix, clifford_on_basis_state
-export stabilizer_to_statevector, basis_state_amplitude, pauli_eigenvalue_on_basis
+export clifford_to_matrix
+
 export clifford_to_itensor, make_clifford_gate_tensors
 export TwoQubitCliffordCache, build_clifford_cache
 export get_clifford_matrix, get_clifford_inverse_matrix

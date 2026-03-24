@@ -1,3 +1,4 @@
+"""
 Experiment 4: Per-T-Gate Positional OFD Analysis
 =================================================
 
@@ -23,7 +24,7 @@ Modes:
 Output:
     results/experiment4_positional_ofd.csv          (per-T-gate data)
     results/experiment4_positional_ofd_summary.csv  (per-family summary)
-=
+"""
 
 camps_dir = dirname(dirname(@__FILE__))
 println("Activating CAMPS.jl environment: $camps_dir")

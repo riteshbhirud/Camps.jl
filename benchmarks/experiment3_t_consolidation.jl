@@ -1,3 +1,4 @@
+"""
 Experiment 3: T-Gate Consolidation Preprocessing
 =================================================
 
@@ -23,7 +24,7 @@ Modes:
 
 Output:
     results/experiment3_t_consolidation.csv
-=
+"""
 
 camps_dir = dirname(dirname(@__FILE__))
 println("Activating CAMPS.jl environment: $camps_dir")

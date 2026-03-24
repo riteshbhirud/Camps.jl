@@ -1,3 +1,4 @@
+"""
 Experiment: Proposition 2 — Repeated-Block Rank Bound Verification
 ===================================================================
 
@@ -23,7 +24,7 @@ Modes:
 
 Output:
     results/experiment_prop2_rank_bound.csv
-=
+"""
 
 camps_dir = dirname(dirname(@__FILE__))
 println("Activating CAMPS.jl environment: $camps_dir")

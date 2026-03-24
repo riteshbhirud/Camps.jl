@@ -1,3 +1,4 @@
+"""
 Experiment 2: GF(2)-Screened OFD — Pre-Filtering Validation
 ============================================================
 
@@ -29,7 +30,7 @@ Modes:
 
 Output:
     results/experiment2_hybrid_scheduling.csv
-=
+"""
 
 camps_dir = dirname(dirname(@__FILE__))
 println("Activating CAMPS.jl environment: $camps_dir")

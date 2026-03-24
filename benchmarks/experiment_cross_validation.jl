@@ -1,3 +1,4 @@
+"""
 Experiment: GF(2) Cross-Validation Against Benchmark Data
 ==========================================================
 
@@ -22,7 +23,7 @@ Modes:
 
 Output:
     results/experiment_cross_validation.csv
-=
+"""
 
 camps_dir = dirname(dirname(@__FILE__))
 println("Activating CAMPS.jl environment: $camps_dir")

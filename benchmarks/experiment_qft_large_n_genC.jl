@@ -1,3 +1,4 @@
+"""
 Experiment: Large-N QFT Rank Scaling — Generator C (Exact Angles)
 =================================================================
 
@@ -29,7 +30,7 @@ Output:
     results/experiment_qft_large_n_genC.csv
     results/experiment_qft_large_n_genC_models.csv
     results/experiment_qft_large_n_genC_exponents.csv
-=
+"""
 
 camps_dir = dirname(dirname(@__FILE__))
 println("Activating CAMPS.jl environment: $camps_dir")

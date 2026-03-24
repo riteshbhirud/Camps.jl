@@ -1246,8 +1246,8 @@ function extract_two_site_rdm(mps::MPS, site1::Int, site2::Int)::Matrix{ComplexF
 
     wf = psi[site1] * psi[site2]
 
-    s1 = siteind(psi, site1)
-    s2 = siteind(psi, site2)
+    s1 = siteind(psi, site1)::Index
+    s2 = siteind(psi, site2)::Index
 
     wf_dag = dag(wf)
 

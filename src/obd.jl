@@ -175,7 +175,7 @@ Thread-safe via lock protection.
 function get_or_build_clifford_pauli_cache(cache::Union{TwoQubitCliffordCache, Nothing}=nothing)::Vector{CliffordPauliMap}
     lock(CLIFFORD_PAULI_MAP_CACHE_LOCK) do
         if CLIFFORD_PAULI_MAP_CACHE[] !== nothing
-            return CLIFFORD_PAULI_MAP_CACHE[]
+            return CLIFFORD_PAULI_MAP_CACHE[]::Vector{CliffordPauliMap}
         end
 
         if cache !== nothing
@@ -430,7 +430,7 @@ Thread-safe via lock protection.
 function get_or_build_renyi2_kernel_cache(cache::Union{TwoQubitCliffordCache, Nothing}=nothing)::Vector{Renyi2ContractionKernel}
     lock(RENYI2_KERNEL_CACHE_LOCK) do
         if RENYI2_KERNEL_CACHE[] !== nothing
-            return RENYI2_KERNEL_CACHE[]
+            return RENYI2_KERNEL_CACHE[]::Vector{Renyi2ContractionKernel}
         end
 
         if cache !== nothing

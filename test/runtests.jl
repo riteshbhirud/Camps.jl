@@ -35,4 +35,9 @@ using CAMPS
     @testset "Phase 6: End-to-End Correctness" begin
         include("test_correctness.jl")
     end
+
+    @testset "Code Quality" begin
+        include("test_aqua.jl")
+        include("test_jet.jl")
+    end
 end
