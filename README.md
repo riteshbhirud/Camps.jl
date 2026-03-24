@@ -4,7 +4,7 @@ Julia implementation of Clifford-Augmented Matrix Product States for simulating 
 
 ## About this repo
 
-This package implements the CAMPS representation from [Liu & Clark (arXiv:2412.17209)](https://arxiv.org/abs/2412.17209). The basic idea is to represent quantum states as:
+This package implements the CAMPS representation from [Liu & Clark (arXiv:2412.17209)](https://arxiv.org/abs/2412.17209) . The basic idea is to represent quantum states as:
 
 ```
 |ψ⟩ = C · |ψ_MPS⟩
